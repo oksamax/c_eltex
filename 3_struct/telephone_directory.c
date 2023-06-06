@@ -11,8 +11,8 @@ int main(void)
 {
 	struct str_data data[10];
 	float item;
-	int start_counter = 0, end_counter = 0, conuter = 0, i = 0;
-	char find_firstname[20], delete_firstname[20];
+	int end_counter = 0, counter = 0, i = 0;
+	char find_delete_firstname[20];
 
 	do {
 		
@@ -30,6 +30,7 @@ int main(void)
 				scanf("%s",data[end_counter].number);
 				end_counter++;
 			}
+			else printf("Telephone directory is full!!!\n");
 		}
 
 		// List of users
@@ -46,19 +47,36 @@ int main(void)
 		else if(3 == item) {
 			if (end_counter != 0) {
 				printf("Enter firstname:");
-				scanf("%s",find_firstname);
+				scanf("%s",find_delete_firstname);
 				for(i = 0; i < end_counter; i++) {
-					if (!(strcmp(data[i].firstname, find_firstname))) {
+					if (!(strcmp(data[i].firstname, find_delete_firstname))) {
 						printf("Firstname:%s Surname:%s Number:%s\n",data[i].firstname, data[i].surname, data[i].number);
+						counter++;
 					}
 				}
+				if (0 == counter) printf("User not found!\n");
+				counter = 0;
 			}
 			else printf("Telephone directory is empty!!!\n");
 		}
 
 		// Delete user
 		else if(4 == item){
-
+			if (end_counter != 0){
+				printf("Enter firstname:");
+				scanf("%s",find_delete_firstname);
+				for(i = 0; i < end_counter; i++){
+					if(!(strcmp(data[i].firstname, find_delete_firstname))){
+						printf("Delete user %s!\n",data[i].firstname);
+						strcpy(data[i].firstname,data[end_counter-1].firstname);
+						strcpy(data[i].surname,data[end_counter-1].surname);
+						strcpy(data[i].number,data[end_counter-1].number);
+						end_counter--;
+						i--;
+					}
+				}
+			}
+			else printf("Telephone directory is empty!!!\n");
 		}
 
 		// Erroneous item
