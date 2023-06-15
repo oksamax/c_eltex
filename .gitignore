@@ -7,3 +7,4 @@ not_tasks/switch_enum
 not_tasks/pointer_func
 4_gdb/password
 4_gdb/stack_frame
+not_tasks/preprocessor_directives
