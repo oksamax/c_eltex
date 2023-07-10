@@ -9,10 +9,11 @@ int main(void)
 	int variable_a = 0, variable_b = 0, *ptr_lib = NULL, (*ptr_func)(int,int);
 	char name_lib[10] = {'0'};
 
-	printf("Enter name library:");
-	gets(name_lib);
+	puts("Enter name library:");
+	fgets(name_lib, 10, stdin);
+	puts(name_lib);
 
-	ptr_lib = dlopen("name_lib", RTLD_LAZY);
+	ptr_lib = dlopen(name_lib, RTLD_LAZY);
 
 	if (NULL == ptr_lib) {
 		printf("ERROR OPEN LIBRARY!!!\n");
